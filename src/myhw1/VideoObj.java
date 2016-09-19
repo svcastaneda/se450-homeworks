@@ -72,22 +72,16 @@ final class VideoObj implements Comparable<VideoObj> {
 	 * @param thatObject the Object to be compared.
 	 * @return deep equality test between this and thatObject.
 	 */
+	@Override
 	public boolean equals(Object thatObject) {
-		// TODO
-//		if (thatObject.getClass().equals(VideoObj.class)) {
-			return thatObject.equals(this);
-//			int title, year, director;
-//			title = this.title.compareTo(thatObject.title);
-//			if (this.year > thatObject.year) {
-//				year = 1;
-//			} else if (this.year < that.year) {
-//				year = -1;
-//			} else {
-//				year = 0;
-//			}
-//			director = this.title.compareTo(that.director);
-//		}
-//		return false;
+		if (thatObject == null) return false;
+		if (this.getClass() != thatObject.getClass()) return false;
+		if (this == thatObject) return true;
+		
+		VideoObj other = (VideoObj) thatObject;
+		return	title() == other.title() &&
+				director() == other.director() &&
+				year() == other.year();
 	}
 
 	/**
@@ -95,12 +89,11 @@ final class VideoObj implements Comparable<VideoObj> {
 	 * fields are added in the following order: title, year, director.
 	 */
 	public int hashCode() {
-		// TODO
 		int hash = 17;
-		hash = hash * 17 + title().hashCode(); // title
-		hash = hash * 17 + year(); // year
-		hash = hash * 17 + director().hashCode();
-		return hash * -1;
+		hash = hash * 37 + title().hashCode();
+		hash = hash * 37 + year();
+		hash = hash * 37 + director().hashCode();
+		return hash;
 	}
 
 	/**
@@ -111,19 +104,7 @@ final class VideoObj implements Comparable<VideoObj> {
 	 *  object is less than, equal to, or greater than that object.
 	 */
 	public int compareTo(VideoObj that) {
-		// TODO
-		int title, year, director;
-		title = this.title.compareTo(that.title);
-		if (this.year > that.year) {
-			year = 1;
-		} else if (this.year < that.year) {
-			year = -1;
-		} else {
-			year = 0;
-		}
-		director = this.title.compareTo(that.director);
-		int total = title + year + director;
-		return total;
+		return this.toString().compareTo(that.toString());
 	}
 
 	/**
@@ -132,13 +113,6 @@ final class VideoObj implements Comparable<VideoObj> {
 	 */
 	public String toString() {
 //		format: "Title (year) : Director";
-//		StringBuilder buffer = new StringBuilder();
-//		buffer.append(title());
-//		buffer.append(" (");
-//		buffer.append(year());
-//		buffer.append(") : ");
-//		buffer.append(director());
-//		return buffer.toString();
 		return title() + " (" + year() + ") : " + director();
 	}
 }

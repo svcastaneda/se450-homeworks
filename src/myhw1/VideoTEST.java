@@ -84,24 +84,43 @@ public class VideoTEST {
 
 	@Test
 	public void testEquals() {
-		// TODO
-		String title1 = "XX";
-		String director1 = "XY";
-		String title2 = " XX ";
-		String director2 = " XY ";
+		String title1 = "Title 1";
+		String director1 = "Director 1";
+		String title2 = "Title 2";
+		String director2 = " Director 2";
+		int year = 2002;
+
+		VideoObj v1 = new VideoObj(title1, year, director1);
+		VideoObj same1 = new VideoObj(title1, year, director1);
+		VideoObj v2 = new VideoObj(title2, year, director2);
+		VideoObj same2 = new VideoObj(title2, year, director2);
+		
+		assertEquals(0, v1.compareTo(v1));
+		assertEquals(0, v2.compareTo(v2));
+		assertEquals(0, v1.compareTo(same1));
+		assertEquals(0, v2.compareTo(same2));
+		assertEquals(-1, v1.compareTo(v2));
+		assertEquals(1, v2.compareTo(v1));
+	}
+
+	@Test
+	public void testCompareTo() {
+		String title1 = "Title 1";
+		String director1 = "Director 1";
+		String title2 = "Title 2";
+		String director2 = " Director 2";
 		int year = 2002;
 
 		VideoObj v1 = new VideoObj(title1, year, director1);
 		VideoObj v2 = new VideoObj(title2, year, director2);
 		
-		Object obj = new VideoObj(title1, year, director1);
+		VideoObj obj = new VideoObj(title1, year, director1);
+		Record rec = new Record(v1, 1, 1, 1);
+		
 		assertTrue(v1.equals(obj));
 		assertFalse(v2.equals(obj));
-	}
-
-	@Test
-	public void testCompareTo() {
-		// TODO
+		assertFalse(v1.equals(rec));
+		assertFalse(v2.equals(rec));
 	}
 
 	@Test
