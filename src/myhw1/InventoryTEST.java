@@ -39,7 +39,16 @@ public class InventoryTEST {
 	
 	@Test
 	public void testCheckOutCheckIn() {
-		// TODO
+		s.addNumOwned(v1, 1);
+		s.checkOut(v1);
+		assertEquals(1, s.get(v1).numOut);
+		assertEquals(1, s.get(v1).numRentals);
+		try { s.checkOut(v1); fail(); } catch ( IllegalArgumentException e ) {}
+		try { s.checkOut(v2); fail(); } catch ( IllegalArgumentException e ) {}
+		s.checkIn(v1);
+		assertEquals(0, s.get(v1).numOut);
+		try { s.checkIn(v2); fail(); } catch ( IllegalArgumentException e ) {}
+		assertEquals(1, s.get(v1).numRentals);
 	}
 
 	@Test

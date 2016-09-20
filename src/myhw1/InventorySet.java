@@ -97,7 +97,21 @@ final class InventorySet {
 	 * <p><b>Postcondition:</b> changes the record for the video</p>
 	 */
 	public void checkOut(VideoObj video) {
-		// TODO
+		if (video == null) {
+			throw new IllegalArgumentException("Video cannot be null");
+		} else {
+			Record record = data.get(video);
+			if (record != null) {
+				if (record.numOut == record.numOwned) {
+					throw new IllegalArgumentException("All videos are checked out. Sorry!");
+				} else {
+				    record.numRentals += 1;
+				    record.numOut += 1;
+				}
+			} else {
+				throw new IllegalArgumentException("No records for this video exist.");
+			}
+		}
 	}
 
 	/**
@@ -108,7 +122,20 @@ final class InventorySet {
 	 * <p><b>Postcondition:</b> changes the record for the video</p>
 	 */
 	public void checkIn(VideoObj video) {
-		// TODO
+		if (video == null) {
+			throw new IllegalArgumentException("Video cannot be null");
+		} else {
+			Record record = data.get(video);
+			if (record != null) {
+				if (record.numOut < 1) {
+					throw new IllegalArgumentException("No videos have been checked out.");
+				} else {
+				    record.numOut -= 1;
+				}
+			} else {
+				throw new IllegalArgumentException("No records for this video exist.");
+			}
+		}
 	}
 
 	/**
