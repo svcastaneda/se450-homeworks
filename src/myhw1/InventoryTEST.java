@@ -1,7 +1,7 @@
 package myhw1;
 import static org.junit.Assert.*;
 
-import java.util.ArrayList;
+import java.util.Collection;
 
 import org.junit.Test;
 
@@ -76,10 +76,13 @@ public class InventoryTEST {
 		// collection does not change the original records in the
 		// inventory.  ToCollection should return a COPY of the records,
 		// not the records themselves.
-		// TODO
-		ArrayList<Record> collection = new ArrayList<Record>();
+		Collection<Record> collection = s.toCollection();
 		collection.add(s.get(v1));
 		collection.add(s.get(v2));
+		assertNotEquals(collection, s.toCollection());
+		Record r = new Record( v1copy, 20, 10, 300 );
+		collection.add(r);
+		assertNotEquals(collection, s.toCollection());
 	}
 	
 }

@@ -46,7 +46,6 @@ final class InventorySet {
 	 */
 	public Collection<Record> toCollection() {
 		// Recall that an ArrayList is a Collection.
-		// TODO
 		ArrayList<Record> collection = new ArrayList<Record>();
 		for (Record record : data.values()) {
 			collection.add(record.copy());
