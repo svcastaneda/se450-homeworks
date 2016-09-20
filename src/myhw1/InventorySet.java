@@ -151,10 +151,7 @@ final class InventorySet {
 		if (moviesCheckedOut() > 0) {
 			throw new IllegalArgumentException("Some movies are still checked out!");
 		}
-		for (Record record : data.values()) {
-			int x = record.numOwned * -1;
-			addNumOwned(record.video, x);
-		}
+		data.clear();
 	}
 	
 	private int moviesCheckedOut() {
