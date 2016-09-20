@@ -2,7 +2,6 @@ package myhw1;
 import static org.junit.Assert.*;
 import org.junit.Test;
 
-// TODO: complete the tests
 public class VideoTEST {
 	@Test
 	public void testConstructorAndAttributes() {

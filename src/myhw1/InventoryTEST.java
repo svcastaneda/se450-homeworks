@@ -1,5 +1,6 @@
 package myhw1;
 import static org.junit.Assert.*;
+
 import org.junit.Test;
 
 // TODO: complete the tests
@@ -49,7 +50,8 @@ public class InventoryTEST {
 	@Test
 	public void testGet() {
 		// Get should return a COPY of the records, not the records themselves.
-		// TODO
+		s.addNumOwned(v1, 1);
+		assertTrue(s.get(v1) != s.get(v1));
 	}
 
 	@Test

@@ -31,7 +31,6 @@ final class InventorySet {
 	 *  Return a copy of the record for a given Video; if not present, return <code>null</code>.
 	 */
 	public Record get(VideoObj v) {
-		// TODO
 		Record r = data.get(v);
 		if (r != null) {
 			return new Record(v,r.numOwned,r.numOut,r.numRentals);
@@ -66,7 +65,6 @@ final class InventorySet {
 	 * <p><b>Postcondition:</b> changes the record for the video</p>
 	 */
 	public void addNumOwned(VideoObj video, int change) {
-		// TODO
 		if (video == null || change == 0) {
 			throw new IllegalArgumentException("Video cannot be null and change cannot be 0");
 		} else {
