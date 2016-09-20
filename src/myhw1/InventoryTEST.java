@@ -1,6 +1,8 @@
 package myhw1;
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+
 import org.junit.Test;
 
 // TODO: complete the tests
@@ -53,7 +55,12 @@ public class InventoryTEST {
 
 	@Test
 	public void testClear() {
-		// TODO
+		s.addNumOwned(v1, 1);
+		s.checkOut(v1);
+		try { s.clear(); fail(); } catch ( IllegalArgumentException e ) {}
+		s.checkIn(v1);
+		s.clear();
+		assertEquals(0, s.size());
 	}
 
 	@Test
@@ -70,6 +77,9 @@ public class InventoryTEST {
 		// inventory.  ToCollection should return a COPY of the records,
 		// not the records themselves.
 		// TODO
+		ArrayList<Record> collection = new ArrayList<Record>();
+		collection.add(s.get(v1));
+		collection.add(s.get(v2));
 	}
 	
 }

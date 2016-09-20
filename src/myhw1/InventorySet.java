@@ -1,4 +1,5 @@
 package myhw1;
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.Collection;
@@ -46,7 +47,11 @@ final class InventorySet {
 	public Collection<Record> toCollection() {
 		// Recall that an ArrayList is a Collection.
 		// TODO
-		return null;
+		ArrayList<Record> collection = new ArrayList<Record>();
+		for (Record record : data.values()) {
+			collection.add(record.copy());
+		}
+		return collection;
 	}
 
 	/**
@@ -143,7 +148,21 @@ final class InventorySet {
 	 * <p><b>Postcondition:</b> <code>size() == 0</code></p>
 	 */
 	public void clear() {
-		// TODO
+		if (moviesCheckedOut() > 0) {
+			throw new IllegalArgumentException("Some movies are still checked out!");
+		}
+		for (Record record : data.values()) {
+			int x = record.numOwned * -1;
+			addNumOwned(record.video, x);
+		}
+	}
+	
+	private int moviesCheckedOut() {
+		int total = 0;
+		for (Record record : data.values()) {
+			total += record.numOut;
+		}
+		return total;
 	}
 
 	/**
